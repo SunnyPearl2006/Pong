@@ -32,6 +32,7 @@ public class Game extends JFrame implements KeyListener {
   @Override
   public void paint(Graphics g) {
     Graphics gen = (Graphics) g;
+    super.paint(g);
     ball.draw(gen);
     paddle.draw(gen);
     
