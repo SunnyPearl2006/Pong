@@ -4,22 +4,23 @@ import java.awt.Graphics;
 public class Paddle{
   int x;
   int y;
-  int VelX;
   Color color;
   public Paddle(int x , int y, Color color){
     this.x = x;
     this.y = y;
     this.color = color;
-    this.VelX = 10;
   }
   public void moveL(){
     //TODO: add bounds later
-    x-=VelX;
+    x-=10;
+    x = Math.max(x,10);
     
   }
   public void moveR(){
     //TODO: add bounds later
-    x+=VelX;
+    x+=10;
+    x = Math.min(x,390);
+
 
   }
 
@@ -31,5 +32,8 @@ public class Paddle{
   }
   public int getX(){
     return x;
+  }
+  public int getY(){
+    return y;
   }
 }
