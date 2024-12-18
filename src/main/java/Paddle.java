@@ -13,10 +13,12 @@ public class Paddle{
     this.VelX = 10;
   }
   public void moveL(){
+    //TODO: add bounds later
     x-=VelX;
     
   }
   public void moveR(){
+    //TODO: add bounds later
     x+=VelX;
 
   }
