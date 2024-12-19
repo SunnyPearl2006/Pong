@@ -15,7 +15,7 @@ public class Game extends JFrame implements ActionListener,KeyListener {
   Timer loop;
 
   public Game() {
-    this.loop = new Timer(1000/30,this);
+    this.loop = new Timer(1000/2,this);
     setUp();
   }
 
@@ -42,8 +42,10 @@ public class Game extends JFrame implements ActionListener,KeyListener {
     return false;
   }
   public boolean colPaddle(){
-
-    if(ball.getY() >= paddle.getY()){
+    System.out.println(ball.getY());
+    System.out.println("PADDLE" + paddle.getY());
+    if(ball.getY() + 25 <= paddle.getY() && ball.getY() >= paddle.getY()-40 ){
+      //System.out.println(ball.getY());
       return true;
     }
     return false;
@@ -78,15 +80,17 @@ public class Game extends JFrame implements ActionListener,KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if(gameOver()){
-      loop.stop();
-    } else {
+    if(!gameOver()){
       if(colPaddle()){
         //System.out.println("Here");
         ball.paddleCol();
       }
       ball.move();
       this.repaint();
+      //loop.stop();
+    } else {
+      loop.stop();
+     
     }
   
 

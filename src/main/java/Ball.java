@@ -36,7 +36,7 @@ public class Ball{
   public void paddleCol(){
       VelY = 0;
       grav = -2;
-      System.out.println(VelY);
+      //System.out.println(VelY);
   }
   
   public void draw(Graphics g){
