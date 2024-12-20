@@ -33,7 +33,11 @@ public class Ball{
 
     
   }
-  public void paddleCol(){
+  public void reset(int x , int y){
+    this.x = x;
+    this.y = y;
+  }
+  public void colMath(){
       VelY = 0;
       grav = -2;
       //System.out.println(VelY);

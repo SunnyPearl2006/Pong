@@ -15,7 +15,7 @@ public class Game extends JFrame implements ActionListener,KeyListener {
   Timer loop;
 
   public Game() {
-    this.loop = new Timer(1000/2,this);
+    this.loop = new Timer(1000/10,this);
     setUp();
   }
 
@@ -37,14 +37,18 @@ public class Game extends JFrame implements ActionListener,KeyListener {
   }
   public boolean gameOver(){
     if(ball.getY() > 465){
+      //this.repaint();
+      ball.reset(this.getWidth()/2,(this.getHeight()/2)/2);
+      paddle.reset(this.getWidth()/2-40);
+      this.repaint();
       return true;
     }
     return false;
   }
-  public boolean colPaddle(){
-    System.out.println(ball.getY());
-    System.out.println("PADDLE" + paddle.getY());
-    if(ball.getY() + 25 <= paddle.getY() && ball.getY() >= paddle.getY()-40 ){
+  public boolean collision(){
+    //System.out.println(ball.getY());
+    //System.out.println("PADDLE" + paddle.getY());
+    if((ball.getY() + 25 <= paddle.getY() && ball.getY() >= paddle.getY()-40) && (ball.getX() >= paddle.getX() -25 && ball.getX() <= paddle.getX() + 105) ){
       //System.out.println(ball.getY());
       return true;
     }
@@ -80,18 +84,17 @@ public class Game extends JFrame implements ActionListener,KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if(!gameOver()){
-      if(colPaddle()){
-        //System.out.println("Here");
-        ball.paddleCol();
-      }
-      ball.move();
-      this.repaint();
-      //loop.stop();
-    } else {
+   
+    
+    if(gameOver()){
       loop.stop();
-     
+      //this.repaint();
     }
+    if(collision()){
+      ball.colMath();
+    }
+    ball.move();
+    this.repaint();
   
 
   }

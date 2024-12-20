@@ -11,17 +11,20 @@ public class Paddle{
     this.color = color;
   }
   public void moveL(){
-    //TODO: add bounds later
+   
     x-=10;
     x = Math.max(x,10);
     
   }
   public void moveR(){
-    //TODO: add bounds later
+
     x+=10;
     x = Math.min(x,390);
 
 
+  }
+  public void reset(int x){
+    this.x = x;
   }
 
   public void draw(Graphics g){
