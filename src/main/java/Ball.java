@@ -17,12 +17,6 @@ public class Ball{
     this.color = color;
   }
   public void move(){
-    if(y < 32){
-      //TODO: replace with actual physics math to proberly calculate velocity later
-      y = 32;
-      VelY = 0;
-      grav = 2;
-    }
     
 
     VelY += grav;
@@ -38,8 +32,14 @@ public class Ball{
     this.y = y;
   }
   public void colMath(){
-      VelY = 0;
-      grav = -2;
+      if(this.y < 250){
+        VelY = 0;
+        grav = 2;
+      } else {
+        VelY = 0;
+        grav = -2;
+      }
+     
       //System.out.println(VelY);
   }
   
