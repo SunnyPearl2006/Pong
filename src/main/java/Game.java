@@ -16,7 +16,7 @@ public class Game extends JFrame implements ActionListener,KeyListener {
   Timer loop;
 
   public Game() {
-    this.loop = new Timer(1000/1,this);
+    this.loop = new Timer(1000/25,this);
     setUp();
   }
 
@@ -49,16 +49,19 @@ public class Game extends JFrame implements ActionListener,KeyListener {
     return false;
   }
   public boolean collision(){
-    //System.out.println(ball.getY());
-    //System.out.println("PADDLE" + paddle.getY());
-    if((ball.getY() + 25 <= paddle.getY() && ball.getY() >= paddle.getY()-40) && (ball.getX() >= paddle.getX() -25 && ball.getX() <= paddle.getX() + 105) ){
+    
+    if((ball.getY() + 25 <= paddle.getY() && ball.getY() >= paddle.getY()-30) && (ball.getX() >= paddle.getX() -25 && ball.getX() <= paddle.getX() + 105) ){
       //System.out.println(ball.getY());
       return true;
     }
-    if((ball.getY() + 25  <= paddle2.getY() + 65 && ball.getY()   >= paddle2.getY() + 25) && (ball.getX() >= paddle2.getX() -25 && ball.getX() <= paddle2.getX() + 105) ){
+    if((ball.getY()   <= paddle2.getY() + 30 && ball.getY()   >= paddle2.getY() + 25) && (ball.getX() >= paddle2.getX() -25 && ball.getX() <= paddle2.getX() + 110) ){
       //System.out.println(ball.getY());
       return true;
     }
+    if(ball.getX()+25 > this.window.getWidth() || ball.getX() < 10 ){
+      return true;
+    }
+
     return false;
   }
   @Override
@@ -102,10 +105,10 @@ public class Game extends JFrame implements ActionListener,KeyListener {
     
     if(gameOver()){
       loop.stop();
-      //this.repaint();
+    
     }
     if(collision()){
-      ball.colMath();
+      ball.colMath(ball.getX(), ball.getY(),paddle,paddle2);
     }
     ball.move();
     this.repaint();

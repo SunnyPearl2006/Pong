@@ -7,19 +7,19 @@ public class Ball{
   int VelX;
   int VelY;
   Color color;
-  int grav;
+ 
   public Ball(int x , int y, Color color){
-    this.grav = 2;
+
     this.x = x;
     this.y = y;
-    this.VelY  = 0;
-    this.VelX = 0;
+    this.VelY  = 4;
+    this.VelX = 4;
     this.color = color;
   }
   public void move(){
     
 
-    VelY += grav;
+ 
     x+=VelX;
     y+=VelY;
     
@@ -31,14 +31,23 @@ public class Ball{
     this.x = x;
     this.y = y;
   }
-  public void colMath(){
-      if(this.y < 250){
-        VelY = 0;
-        grav = 2;
-      } else {
-        VelY = 0;
-        grav = -2;
-      }
+  public void colMath(int x , int y , Paddle paddle, Paddle paddle2){
+    if((y + 25 <= paddle.getY() && y >= paddle.getY()-30) && (x >= paddle.getX() -25 && x <= paddle.getX() + 105) ){
+
+      VelY = -4;
+    }
+    if((y  <= paddle2.getY() + 45 && y   >= paddle2.getY() + 25) && (x >= paddle2.getX() -25 && x <= paddle2.getX() + 110) ){
+  
+      VelY = 4;
+    }
+    if(x+35 > 500){
+      VelX = -4;
+    }
+    if(x < 10){
+      System.out.println(x);
+      VelX = 4;
+    }
+      
      
       //System.out.println(VelY);
   }
